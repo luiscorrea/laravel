@@ -9,14 +9,14 @@ node('php7'){
     }
 
     stage('Docker Build') {
-        sh 'sudo docker build -t luiscorrea/laravel:$BUILD_NUMBER .'
+        sh 'sudo docker build -t luiscorrea/laravel:$BRANCH_NAME - $BUILD_NUMBER .'
     }
 
     stage('Docker Ship') {
-        sh 'sudo docker push luiscorrea/laravel:$BUILD_NUMBER'
+        sh 'sudo docker push luiscorrea/laravel:$BRANCH_NAME - $BUILD_NUMBER'
     }
     
     stage('Docker Clean') {
-        sh 'sudo docker rmi -f luiscorrea/laravel:$BUILD_NUMBER'
+        sh 'sudo docker rmi -f luiscorrea/laravel:$BRANCH_NAME - $BUILD_NUMBER'
     }
 }
