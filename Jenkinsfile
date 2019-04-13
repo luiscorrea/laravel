@@ -1,7 +1,6 @@
 node('php7'){
     stage('Clean'){
         deleteDir()
-        sh 'ls -la'
     }
 
     stage('Fetch') {
@@ -32,14 +31,14 @@ node('php7'){
     }
 
     stage('Docker Build') {
-        sh 'docker build -t luiscorrea/laravel:$BRANCH_NAME - $BUILD_NUMBER .'
+        sh 'sudo docker build -t luiscorrea/laravel:$BRANCH_NAME-$BUILD_NUMBER .'
     }
 
     stage('Docker Ship') {
-        sh 'docker push luiscorrea/laravel:$BRANCH_NAME - $BUILD_NUMBER'
+        sh 'sudo docker push luiscorrea/laravel:$BRANCH_NAME-$BUILD_NUMBER'
     }
     
     stage('Docker Cleanup') {
-        sh 'docker rmi -f luiscorrea/laravel:$BRANCH_NAME - $BUILD_NUMBER'
+        sh 'sudo docker rmi -f luiscorrea/laravel:$BRANCH_NAME-$BUILD_NUMBER'
     }
 }
