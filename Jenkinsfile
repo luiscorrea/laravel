@@ -1,7 +1,6 @@
 node('php7'){
     stage('Clean'){
         deleteDir()
-        sh 'ls -la'
     }
 
     stage('Fetch') {
@@ -41,6 +40,5 @@ node('php7'){
     
     stage('Clean Up') {
         sh 'sudo docker rmi luiscorrea/laravel:$BRANCH_NAME - $BUILD_NUMBER'
-        deleteDir()
     }
 }
