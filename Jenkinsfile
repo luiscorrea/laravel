@@ -1,7 +1,7 @@
 node('php7'){
     stage('Clean'){
         deleteDir()
-        sh 'ls -la'
+      
     }
 
     stage('Fetch') {
